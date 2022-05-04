@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <script>
+		var listaNumeros = [];
+		function Incrementa(){
+			var V0 = Number(document.getElementById("velocidade").value);
+            var ts = Number(V0/9.807);
+			document.getElementById("tempo_subida").textContent = ts;
+            var hmax = Number((V0*V0)/(2*9.807));
+            document.getElementById("h_max").textContent = hmax;
+		}
+		
+	</script>
+    </head>
+    <body>
+        <h1>Arremeco Vertical (Gravidade 9.807m/s^2)</h1>
+        <h2>coloque a velocidade inicial em metros por segundos</h2>
+        <input id="velocidade" type="text" size="10"/> 
+        <h1>Tempo de Subida (em segundos):</h1> 
+		<h2 id="tempo_subida"></h2> 
+        <h1>Altura Maxima (em metros):</h1> 
+		<h2 id="h_max"></h2> 
+		<input type="button" value="Calcular" onclick="Incrementa()" />
+    </body>
+</html>
