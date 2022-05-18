@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+
+    <input id="numb1" style="size:fit-content;" type="number"></input>
+    <select name="sinais" id="sinais">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="%">%</option>
+    </select>
+    <input id="numb2" style="size:fit-content;" type="number"></input>
+    <p>=</p>
+    <p id="resposta"></p>
+
+</body>
+<button type="button" onclick="conta()">
+
+    <script>
+        function conta() {
+            let operation = String(document.getElementById("sinais").value);
+            let numb_1 = Number(document.getElementById("numb1").value);
+            let numb_2 = Number(document.getElementById("numb2").value);
+
+            let result = (operation == '+') ? Number(numb_1) + Number(numb_2) :
+                (operation == '-') ? Number(numb_1) - Number(numb_2) :
+                    (operation == '*') ? Number(numb_1) * Number(numb_2) :
+                        (operation == '/') ? Number(numb_1) / Number(numb_2) :
+                        (operation == '%') ? (Number(numb_1) % Number(numb_2)) :  0;
+
+            console.log(result);
+
+            document.getElementById("resposta").textContent = result;
+        }</script>
+
+</html>
