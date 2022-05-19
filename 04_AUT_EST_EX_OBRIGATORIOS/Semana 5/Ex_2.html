@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input id="preco" type="number" />
+    <input type="button" onclick="add_preco()" />
+    <p id="lista"></p>
+    <input type="button" onclick="calc_tot()" />
+    <p id="notas"></p>
+
+</body>
+<script>
+    let lista_precos = []
+    let tot = 0
+    function add_preco() {
+        let preco = Number(document.getElementById("preco").value);
+        lista_precos.push(preco);
+        console.log("a");
+        console.log(lista_precos);
+        document.getElementById("lista").innerHTML = lista_precos;
+    }
+    function calc_tot() {
+        tot = 0
+        for (let i = 0; i < lista_precos.length; i++) {
+            console.log(i);
+            tot += lista_precos[i];
+            console.log(tot);
+        }
+        console.log(tot);
+        lista_precos = [];
+        let notas100 = ~~(tot / 100);
+        let notas50 = ~~((tot % 100) / 50);
+        let notas20 = ~~(((tot % 100) % 50) / 20);
+        let notas10 = ~~((((tot % 100) % 50) % 20) / 10);
+        let notas5 = ~~(((((tot % 100) % 50) % 20) % 10) / 5);
+        let notas2 = ~~((((((tot % 100) % 50) % 20) % 10) % 5) / 2);
+        let moedas1 = ~~((((((tot % 100) % 50) % 20) % 10) % 5) % 2);
+        let centavos = ~~((tot - (notas10*10 + notas20*20 + notas50*50 + notas100*100 + notas5*5 + notas2*2 + moedas1*1))*100);
+        console.log(centavos)
+        document.getElementById("notas").innerHTML = `notas de 100: ${notas100}; notas de 50: ${notas50}; notas de 20: ${notas20}; notas de 10: ${notas10}; notas de 5: ${notas5}; notas de 2: ${notas2}; centavos: ${centavos}`
+    }
+</script>
+
+</html>

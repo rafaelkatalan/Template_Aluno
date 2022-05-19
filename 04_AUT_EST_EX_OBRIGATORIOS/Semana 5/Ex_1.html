@@ -30,10 +30,11 @@
             let numb_2 = Number(document.getElementById("numb2").value);
 
             let result = (operation == '+') ? Number(numb_1) + Number(numb_2) :
-                (operation == '-') ? Number(numb_1) - Number(numb_2) :
-                    (operation == '*') ? Number(numb_1) * Number(numb_2) :
-                        (operation == '/') ? Number(numb_1) / Number(numb_2) :
-                        (operation == '%') ? (Number(numb_1) % Number(numb_2)) :  0;
+                         (operation == '-') ? Number(numb_1) - Number(numb_2) :
+                         (operation == '*') ? Number(numb_1) * Number(numb_2) :
+                         (operation == '/') ? Number(numb_1) / Number(numb_2) :
+                         (operation == '%') ? (Number(numb_1) % Number(numb_2)) :
+                         0;
 
             console.log(result);
 
