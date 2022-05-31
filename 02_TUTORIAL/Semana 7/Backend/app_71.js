@@ -1,21 +1,24 @@
 const express = require('express'); 
 const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
-const hostname = '127.0.0.1';
 
-const port = 3061;
 const sqlite3 = require('sqlite3').verbose();
+const DBPATH = "ex_aula.db";
+
+const hostname = '127.0.0.1';
+const port = 3098;
 const app = express();
-const DBPATH = 'dbUser.db';
 
-app.use(express.static("../frontend/"));
+/* Servidor aplicação */
 
-app.use(express.json());
+app.use(express.static("../frontend/src1"));
 
 
 /* Definição dos endpoints */
 
-/****** CRUD ******************************************************************/
+/******** CRUD ************/
+
+app.use(express.json());
 
 // Retorna todos registros (é o R do CRUD - Read)
 app.get('/users', (req, res) => {
@@ -23,7 +26,7 @@ app.get('/users', (req, res) => {
 	res.setHeader('Access-Control-Allow-Origin', '*'); // Isso é importante para evitar o erro de CORS
 
 	var db = new sqlite3.Database(DBPATH); // Abre o banco
-  var sql = 'SELECT * FROM tbUser ORDER BY title COLLATE NOCASE';
+  var sql = 'SELECT * FROM aluno';
 	db.all(sql, [],  (err, rows ) => {
 		if (err) {
 		    throw err;
@@ -38,7 +41,7 @@ app.post('/userinsert', urlencodedParser, (req, res) => {
 	res.statusCode = 200;
 	res.setHeader('Access-Control-Allow-Origin', '*'); // Isso é importante para evitar o erro de CORS
 
-	sql = "INSERT INTO tbUser (title, id, completed) VALUES ('" + req.body.title + "', '" + req.body.id + "', '" + req.body.complete + "')";
+	sql = "INSERT INTO tbUser (title, id, completed) VALUES ('" + req.body.title + "', 33, false)";
 	var db = new sqlite3.Database(DBPATH); // Abre o banco
 	db.run(sql, [],  err => {
 		if (err) {
@@ -52,7 +55,7 @@ app.post('/userinsert', urlencodedParser, (req, res) => {
 // Atualiza um registro (é o U do CRUD - Update)
 app.post('/userupdate', urlencodedParser, (req, res) => {
 	res.statusCode = 200;
-	res.setHeader('Access-Control-Allow-Origin', '*'); // Isso é importante para evitar o erro de CORS
+	//res.setHeader('Access-Control-Allow-Origin', '*'); // Isso é importante para evitar o erro de CORS
 
 	sql = "UPDATE tbUser SET title = '" + req.body.title + "' WHERE userId = " + req.body.userId;
 	var db = new sqlite3.Database(DBPATH); // Abre o banco
@@ -81,8 +84,6 @@ app.post('/userdelete', urlencodedParser, (req, res) => {
 	db.close(); // Fecha o banco
 });
 
-
-/* Inicia o servidor */
 app.listen(port, hostname, () => {
-  console.log(`BD server running at http://${hostname}:${port}/`);
+  console.log(`Page server running at http://${hostname}:${port}/`);
 });

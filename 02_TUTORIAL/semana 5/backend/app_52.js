@@ -48,6 +48,21 @@ app.post('/userinsert', urlencodedParser, (req, res) => {
 	res.end();
 });
 
+app.get('/userget', urlencodedParser, (req, res) => {
+	res.statusCode = 200;
+	res.setHeader('Access-Control-Allow-Origin', '*'); 
+
+	sql = "SELECT INTO tbUser (title, id, completed) VALUES ('" + req.body.title + "', 33, false)";
+	var db = new sqlite3.Database(DBPATH); 
+	db.run(sql, [],  err => {
+		if (err) {
+		    throw err;
+		}
+	});
+	db.close();
+	res.end();
+});
+
 /* Inicia o servidor */
 app.listen(port, hostname, () => {
   console.log(`BD server running at http://${hostname}:${port}/`);

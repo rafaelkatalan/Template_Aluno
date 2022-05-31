@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+
+    <input id="text1" style="size:fit-content; border: 2;" type="text"></input>
+    <input id="text2" style="size:fit-content; border: 2;" type="text"></input>
+    <button type="button" onclick="troca()">troca</button>
+
+
+</body>
+
+
+<script>
+    function troca() {
+        let text1 =String(document.getElementById("text1").value);
+        let text2 =String(document.getElementById("text2").value);
+        document.getElementById("text1").value = text2;
+        document.getElementById("text2").value = text1;
+        console.log(text1)
+    }
+</script>
+
+</html>

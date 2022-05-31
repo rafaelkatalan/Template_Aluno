@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+
+    <input id="numb1" style="size:fit-content; border: 2;" type="text"></input>
+    <button type="button" onclick="mais()">+</button>
+    <button type="button" onclick="menos()">-</button>
+
+
+</body>
+
+
+<script>
+    function mais() {
+        let numb1 = Number(document.getElementById("numb1").value);
+        numb1 += 1;
+        document.getElementById("numb1").value = numb1
+        console.log(numb1)
+    }
+    function menos() {
+        let numb1 = Number(document.getElementById("numb1").value);
+        numb1 -= 1;
+        document.getElementById("numb1").value = numb1
+        console.log(numb1)
+    }
+</script>
+
+</html>
